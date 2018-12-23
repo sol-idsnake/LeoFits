@@ -4,17 +4,21 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import Nav from './Nav';
 
-Router.routeChangeStart = () => {
+const handleRouteChange = () => {
   NProgress.start();
 };
 
-Router.routeChangeComplete = () => {
+const handleRouteComplete = () => {
   NProgress.done();
 };
 
-Router.routeChangeError = () => {
+const handleRouteError = () => {
   NProgress.done();
 };
+
+Router.events.on('routeChangeStart', handleRouteChange);
+Router.events.on('routeChangeComplete', handleRouteComplete);
+Router.events.on('routeChangeError', handleRouteError);
 
 const Logo = styled.h1`
   font-size: 4rem;
