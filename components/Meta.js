@@ -6,7 +6,7 @@ const Meta = () => (
     <meta charSet="uft-8" />
     <link rel="shortcut icon" href="/static/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
-    <title>LEO Fits!</title>
+    <title>LEO Fits</title>
   </Head>
 );
 

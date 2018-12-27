@@ -59,8 +59,6 @@ class CreateItem extends Component {
       }
     );
     const file = await res.json();
-    console.log(file);
-    console.log(file.secure_url);
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url,
@@ -111,7 +109,6 @@ class CreateItem extends Component {
                   required
                 />
               </label>
-
               <label htmlFor="price">
                 Price
                 <input
@@ -124,7 +121,6 @@ class CreateItem extends Component {
                   required
                 />
               </label>
-
               <label htmlFor="description">
                 Description
                 <textarea
