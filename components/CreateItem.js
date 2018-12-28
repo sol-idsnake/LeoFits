@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import Form from './styles/Form';
-import formatMoney from '../lib/formatMoney';
+// import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
 // TODO:
@@ -47,7 +47,8 @@ class CreateItem extends Component {
   };
 
   uploadFile = async e => {
-    const files = e.target.files;
+    // const files = e.target.files;
+    const { files } = e.target;
     const data = new FormData();
     data.append('file', files[0]);
     data.append('upload_preset', 'leofits');
