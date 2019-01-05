@@ -39,7 +39,7 @@ class DeleteItem extends Component {
             type="submit"
             onClick={() => {
               if (confirm('Confirm the removal of this item')) {
-                deleteItem();
+                deleteItem().catch(err => alert(err.message));
               }
             }}
           >
