@@ -3,7 +3,6 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import Form from './styles/Form';
-// import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
 // TODO:
@@ -96,7 +95,7 @@ class CreateItem extends Component {
                   onChange={this.uploadFile}
                   required
                 />
-                {image && <img src={image} alt="Uploaded file" />}
+                {image && <img width="200" src={image} alt="Upload Preview" />}
               </label>
               <label htmlFor="title">
                 Title
