@@ -14,6 +14,11 @@ function totalItems(cart) {
 }
 
 export class TakeMyMoney extends Component {
+  onToken(res) {
+    // https://stripe.com/docs/testing#cards
+    console.log(res);
+  }
+
   render() {
     const { children } = this.props;
     return (
@@ -23,9 +28,13 @@ export class TakeMyMoney extends Component {
             // https://github.com/azmenak/react-stripe-checkout#send-all-the-props
             // always have to send Cents to stripe
             amount={calcTotalPrice(me.cart)}
+            image={me.cart[0].item && me.cart[0].item.image}
             name="LEO Fits"
             description={`Order of ${totalItems(me.cart)} items!`}
-            stripeKey={process.env.STRIPE_KEY}
+            stripeKey="pk_test_8QLFclj8SDmalnV6Jl1s9XG0"
+            currency="USD"
+            email={me.email}
+            token={res => this.onToken(res)}
           >
             {children}
           </StripeCheckout>
