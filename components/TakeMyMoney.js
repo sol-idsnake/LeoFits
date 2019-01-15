@@ -28,18 +28,23 @@ function totalItems(cart) {
 }
 
 export class TakeMyMoney extends Component {
-  onToken(res, createOrder) {
+  onToken = async (res, createOrder) => {
+    NProgress.start();
     // https://stripe.com/docs/testing#cards
     console.log(this.res);
     // manually call the mutation once we have the stripe token
-    createOrder({
+    const order = await createOrder({
       variables: {
         token: res.id,
       },
     }).catch(err => {
       alert(err.message);
     });
-  }
+    Router.push({
+      pathname: '/order',
+      query: { id: order.data.createOrder.id },
+    });
+  };
 
   render() {
     const { children } = this.props;
@@ -55,7 +60,9 @@ export class TakeMyMoney extends Component {
                 // https://github.com/azmenak/react-stripe-checkout#send-all-the-props
                 // always have to send Cents to stripe
                 amount={calcTotalPrice(me.cart)}
-                image={me.cart[0].item && me.cart[0].item.image}
+                image={
+                  me.cart.length && me.cart[0].item && me.cart[0].item.image
+                }
                 name="LEO Fits"
                 description={`Order of ${totalItems(me.cart)} items!`}
                 stripeKey="pk_test_8QLFclj8SDmalnV6Jl1s9XG0"
