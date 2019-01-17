@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { format } from 'date-fns';
@@ -30,26 +30,27 @@ const SINGLE_ORDER_QUERY = gql`
   }
 `;
 
-class Order extends Component {
+class Order extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
   };
 
   render() {
+    const { id } = this.props;
     return (
-      <Query query={SINGLE_ORDER_QUERY} variables={{ id: this.props.id }}>
+      <Query query={SINGLE_ORDER_QUERY} variables={{ id }}>
         {({ data, error, loading }) => {
           if (error) return <Error error={error} />;
           if (loading) return <p>Loading...</p>;
-          const order = data.order;
+          const { order } = data;
           return (
-            <OrderStyles>
+            <OrderStyles data-test="order">
               <Head>
                 <title>LEO Fits - Order {order.id}</title>
               </Head>
               <p>
                 <span>Order ID:</span>
-                <span>{this.props.id}</span>
+                <span>{id}</span>
               </p>
               <p>
                 <span>Charge</span>
@@ -57,7 +58,7 @@ class Order extends Component {
               </p>
               <p>
                 <span>Date</span>
-                <span>{format(order.createdAt, 'MMMM D, YYYY hh:mm A')}</span>
+                <span>{format(order.createdAt, 'MMMM d, YYYY h:mm a')}</span>
               </p>
               <p>
                 <span>Order Total</span>
@@ -88,4 +89,6 @@ class Order extends Component {
     );
   }
 }
+
 export default Order;
+export { SINGLE_ORDER_QUERY };
