@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
@@ -40,7 +41,13 @@ class Signin extends Component {
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              await signup();
+              await signup().then(user => {
+                if (user) {
+                  Router.push({
+                    pathname: '/items',
+                  });
+                }
+              });
               this.setState({ email: '', password: '' });
             }}
           >
