@@ -60,7 +60,7 @@ class RemoveFromCart extends React.Component {
       >
         {(removeFromCart, { loading, error }) => (
           <BigButton
-            title="Delete ITem"
+            title="Delete Item"
             disabled={loading}
             onClick={() => {
               removeFromCart().catch(err => alert(err.message));

@@ -30,6 +30,9 @@ const Table = styled.table`
       background: ${props => props.theme.offWhite};
     }
   }
+  tr:first-child {
+    width: 20%;
+  }
 `;
 
 export default Table;

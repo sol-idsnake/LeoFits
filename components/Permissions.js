@@ -102,6 +102,7 @@ class UserPermissions extends React.Component {
   render() {
     const { user } = this.props;
     const { permissions } = this.state;
+
     return (
       <Mutation
         mutation={UPDATE_PERMISSIONS_MUTATION}

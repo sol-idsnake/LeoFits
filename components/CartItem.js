@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import formatMoney from "../lib/formatMoney";
-import RemoveFromCart from "./RemoveFromCart";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import formatMoney from '../lib/formatMoney';
+import RemoveFromCart from './RemoveFromCart';
 
 const CartItemStyles = styled.li`
   align-items: center;
@@ -36,7 +36,7 @@ const CartItem = ({ cartItem }) => {
         <h3>{cartItem.item.title}</h3>
         <p>
           {formatMoney(cartItem.item.price * cartItem.quantity)}
-          {" - "}
+          {' - '}
           <em>
             {cartItem.quantity} &times; {formatMoney(cartItem.item.price)} each
           </em>
@@ -48,7 +48,7 @@ const CartItem = ({ cartItem }) => {
 };
 
 CartItem.propTypes = {
-  cartItem: PropTypes.object.isRequired
+  cartItem: PropTypes.object.isRequired,
 };
 
 export default CartItem;
